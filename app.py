@@ -83,7 +83,7 @@ with tabs[0]:
         <br/><br>
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
-        <button style="padding: 7px 25px; background: linear-gradient(20deg, #1da5f2, purple); border: none; border-radius: 7px;">File Query</button>
+        <button style="padding: 7px 25px; background: linear-gradient(10deg, #1da5f2, purple); border: none; border-radius: 7px;">File Query</button>
     """, unsafe_allow_html=True)
 
 with tabs[1]:
