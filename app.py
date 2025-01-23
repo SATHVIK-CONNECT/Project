@@ -79,7 +79,7 @@ with tabs[0]:
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
         <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
-        <button style="padding: 7px 25px; background: linear-gradient(to right, #1da5f2, purple); border: none; border-radius: 7px;">Vision Instruct</button>
+        <button style="padding: 7px 25px; background: linear-gradient(35deg, #1da5f2, purple); border: none; border-radius: 7px;">Vision Instruct</button>
         <br/><br>
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
