@@ -75,14 +75,14 @@ with tabs[0]:
         <h4>Welcome to Intellect!</h4>
         <p style="text-align: justify;">Unlock the power of AI-driven image and file analysis with our innovative application. Sparkis designed to simplify complex tasks, providing accurate and efficient results.</p>
         <h4>Advantages of the Intellect</h4>
-        <p>It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
+        <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
-        <p>It is used to query with images. It let us analyze the image data by using the llama model.</p>
+        <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
         <button style="padding: 5px 25px; background: linear-gradient(to right, #1da5f2, purple); border: none; border-radius: 7px;">Vision Instruct</button>
         <br/><br>
         <h5>File Query</h5>
-        <p>It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
+        <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
         <button style="padding: 5px 25px; background: linear-gradient(to right, #1da5f2, purple); border: none; border-radius: 7px;">File Query</button>
     """, unsafe_allow_html=True)
 
@@ -126,7 +126,7 @@ with tabs[3]:
     #upload file
     st.markdown("""
         <h4>About Intellect</h4>
-        <p style="text-indent: 60px;"> Spark is an AI-powereed application developed as part of the Applied Artificial Intelligence: Practical Implementations course  by TechSaksham Program, which is a CSR initiative by Micrososft and SAP, implemented by Edunet Foundation</p>
+        <p style="text-indent: 60px; text-align: justify;"> Spark is an AI-powereed application developed as part of the Applied Artificial Intelligence: Practical Implementations course  by TechSaksham Program, which is a CSR initiative by Micrososft and SAP, implemented by Edunet Foundation</p>
         <br>
         <ul> 
             <p>Here are the details of the Project development group</p>
