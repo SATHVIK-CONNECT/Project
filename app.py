@@ -124,10 +124,6 @@ with tabs[2]:
 
     groq_api_key = os.getenv('GROQ_API_KEY')
 
-
-    st.markdown("<h2 style='text-align: center;'>PDF Insights: Interactive Q&A with Llama3 & Groq API</h2>", unsafe_allow_html=True)
-
-
     llm = ChatGroq(groq_api_key=groq_api_key, model_name="Llama3-8b-8192")
 
 
@@ -174,7 +170,8 @@ with tabs[2]:
         if st.button("Create the Vector DB from the uploaded PDF file"):
             
             if pdf_input_from_user is not None:
-                
+
+                st.write("Loading...")
                 create_vector_db_out_of_the_uploaded_pdf_file(pdf_input_from_user)
                 
                 st.success("Vector Store DB for this PDF file Is Ready")
@@ -190,7 +187,7 @@ with tabs[2]:
         user_prompt = st.text_input("Enter Your Question related to the uploaded PDF")
 
         if st.button('Submit Prompt'):
-
+          with st.spinner('Generating output...'):
             if user_prompt:
                 
                 if "vector_store" in st.session_state:
