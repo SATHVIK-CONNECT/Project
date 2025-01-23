@@ -72,7 +72,7 @@ def generate_file(uploaded_file, prompt):
     return chat_completion.choices[0].message.content
 
 # Streamlit App
-st.title("SparkAI")
+st.title("Spark AI")
 
 tab_titles = [
     "Home",
