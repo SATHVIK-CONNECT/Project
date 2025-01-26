@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page
 from groq import Groq
 import base64
 import os
@@ -15,7 +14,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 from dotenv import load_dotenv
 import tempfile
- 
+
 # Set up Groq API Key
 os.environ['GROQ_API_KEY'] = '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'
 
@@ -92,11 +91,12 @@ with tabs[0]:
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
         <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
-        <button style="padding: 7px 25px; background: linear-gradient(35deg, #1da5f2, purple); border: none; border-radius: 7px;">Vision Instruct</button>
-        <br/><br>
+"""
+                , unsafe_allow_html=True)
+
+    st.markdown("""
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
-        <button style="padding: 7px 25px; background: linear-gradient(35deg, #1da5f2, purple); border: none; border-radius: 7px;">File Query</button>
     """, unsafe_allow_html=True)
 
 with tabs[1]:
@@ -108,7 +108,7 @@ with tabs[1]:
             st.image(uploaded_file, caption='Uploaded Image')
             prompt = st.text_input('Enter Query')
 
-            if st.button('Click'):
+            if st.button('Generate'):
                 with st.spinner('Generating output...'):
                     if prompt:
                         output = generate(uploaded_file, prompt)
@@ -171,7 +171,6 @@ with tabs[2]:
             
             if pdf_input_from_user is not None:
 
-                st.write("Loading...")
                 create_vector_db_out_of_the_uploaded_pdf_file(pdf_input_from_user)
                 
                 st.success("Vector Store DB for this PDF file Is Ready")
@@ -187,28 +186,28 @@ with tabs[2]:
         user_prompt = st.text_input("Enter Your Question related to the uploaded PDF")
 
         if st.button('Submit Prompt'):
-          with st.spinner('Generating output...'):
-            if user_prompt:
+            with st.spinner('Generating output...'):
+                if user_prompt:
                 
-                if "vector_store" in st.session_state:
+                    if "vector_store" in st.session_state:
 
-                    document_chain = create_stuff_documents_chain(llm, prompt)
+                        document_chain = create_stuff_documents_chain(llm, prompt)
 
-                    retriever = st.session_state.vector_store.as_retriever()
+                        retriever = st.session_state.vector_store.as_retriever()
 
-                    retrieval_chain = create_retrieval_chain(retriever, document_chain)
+                        retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
-                    response = retrieval_chain.invoke({'input': user_prompt})
+                        response = retrieval_chain.invoke({'input': user_prompt})
 
-                    st.write(response['answer'])
+                        st.write(response['answer'])
+
+                    else:   
+
+                        st.write("Please embed the document first by uploading a PDF file.")
 
                 else:
 
-                    st.write("Please embed the document first by uploading a PDF file.")
-
-            else:
-
-                st.error('Please write your prompt')
+                    st.error('Please write your prompt')
 
 with tabs[3]:
     #upload file
