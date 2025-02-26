@@ -132,9 +132,7 @@ with tabs[3]:
             <p>Here are the details of the Project development group</p>
             <h4>Team Members</h4>
             <li>Sathvik</li>
-            <li>Ravi Kiran</li>
-            <li>Keeravani</li>
-            <li>Prem Kumar</li>
+         
         </ul>
         <ul>
             <h4>Mentor</h4>
