@@ -84,7 +84,10 @@ with tabs[0]:
 
 """
                 , unsafe_allow_html=True)
-    st.markdown("""<hr>""", unsafe_allow_html=True)
+    st.markdown("""<hr>
+                <marquee><p>Hii</p></marquee>""", unsafe_allow_html=True)
+
+
 
     st.markdown("""        <h4>Advantages of the Intellect</h4>
         <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
