@@ -85,7 +85,7 @@ with tabs[0]:
 """
                 , unsafe_allow_html=True)
     st.markdown("""<hr>
-                <marquee><p>Hii</p></marquee>""", unsafe_allow_html=True)
+                <marquee><img src="IMAGE.jpg" width="200px" height="100px" style="border-radius:30px"></marquee>""", unsafe_allow_html=True)
 
 
 
