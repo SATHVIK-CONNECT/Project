@@ -3,6 +3,8 @@ from groq import Groq
 import base64
 import os
 import streamlit as st
+
+import json
 import os
 from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -12,8 +14,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
-from dotenv import load_dotenv
+from streamlit_lottie import  st_lottie
 import tempfile
+
+# Layout
+# st.set_page_config(layout="wide")
 
 # Set up Groq API Key
 os.environ['GROQ_API_KEY'] = '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'
@@ -48,28 +53,6 @@ def generate(uploaded_image, prompt):
     )
     return chat_completion.choices[0].message.content
 
-# Function to generate caption
-def generate_file(uploaded_file, prompt):
-    client = Groq()
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-                'role': 'user',
-                'content': [
-                    {'type': 'text', 'text': prompt},
-                    {
-                        'type': 'image_url',
-                        'image_url': {
-                            'url': uploaded_file,
-                        },
-                    },
-                ],
-            }
-        ],
-        model='llama-3.2-90b-vision-preview',
-    )
-    return chat_completion.choices[0].message.content
-
 # Streamlit App
 st.title("Spark AI")
 
@@ -83,17 +66,30 @@ tab_titles = [
 tabs = st.tabs(tab_titles)
 
 with tabs[0]:
-    st.markdown("""
+    def lottie(anime="anime.json"):
+        with open(anime, "r", encoding='UTF-8') as animation:
+            return json.load(animation)
+    animes = lottie()
+  
+
+
+    col1, col2 = st.columns(2, gap="large", vertical_alignment="center")
+    with col2:
+          st_lottie(animes, width=300, height=300,)
+    with col1:
+        
+     st.markdown("""
         <h4>Welcome to Intellect!</h4>
         <p style="text-align: justify;">Unlock the power of AI-driven image and file analysis with our innovative application. Sparkis designed to simplify complex tasks, providing accurate and efficient results.</p>
-        <h4>Advantages of the Intellect</h4>
-        <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
-        <h4>Explore Our Features - Get Started</h4>
-        <h5>Vision Instruct</h5>
-        <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
+
 """
                 , unsafe_allow_html=True)
 
+    st.markdown("""        <h4>Advantages of the Intellect</h4>
+        <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
+        <h4>Explore Our Features - Get Started</h4>
+        <h5>Vision Instruct</h5>
+        <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>""", unsafe_allow_html=True)
     st.markdown("""
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
@@ -117,10 +113,8 @@ with tabs[1]:
                 st.subheader('Output:')
                 st.write(output)
 
-with tabs[2]:
+with tabs[2]:        
     #upload file
-    load_dotenv()
-
 
     groq_api_key = os.getenv('GROQ_API_KEY')
 
@@ -172,7 +166,7 @@ with tabs[2]:
             if pdf_input_from_user is not None:
 
                 create_vector_db_out_of_the_uploaded_pdf_file(pdf_input_from_user)
-                
+
                 st.success("Vector Store DB for this PDF file Is Ready")
             
             else:
@@ -187,7 +181,7 @@ with tabs[2]:
 
         if st.button('Submit Prompt'):
             with st.spinner('Generating output...'):
-                if user_prompt:
+                if user_prompt: 
                 
                     if "vector_store" in st.session_state:
 
@@ -219,9 +213,7 @@ with tabs[3]:
             <p>Here are the details of the Project development group</p>
             <h4>Team Members</h4>
             <li>Sathvik</li>
-            <li>Ravi Kiran</li>
-            <li>Keeravani</li>
-            <li>Prem Kumar</li>
+            <li>Ravi Kiran</li>          
         </ul>
         <ul>
             <h4>Mentor</h4>
