@@ -7,4 +7,5 @@ langchain
 langchain_core
 langchain_community
 pypdf
+streamlit-lottie
 faiss-cpu
