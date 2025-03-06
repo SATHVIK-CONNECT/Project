@@ -136,6 +136,11 @@ with tabs[1]:
 
 with tabs[2]:        
     #upload file
+    def pdfload(pdfload = "pdfload.json"):
+        with open(pdfload, 'r', encoding="UTF-8") as f:
+            return json.load(f)
+    pdfload = pdfload()
+    
 
     groq_api_key = os.getenv('GROQ_API_KEY')
 
@@ -158,11 +163,15 @@ with tabs[2]:
 
         if "vector_store" not in st.session_state:
 
+
             with tempfile.NamedTemporaryFile(delete=False) as temp_file:
 
                 temp_file.write(pdf_file.read())
 
                 pdf_file_path = temp_file.name
+
+                st_lottie(pdfload, width=150, height=150, loop=2)
+
 
             st.session_state.embeddings = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5', model_kwargs={'device': 'cpu'}, encode_kwargs={'normalize_embeddings': True})
             
@@ -202,6 +211,7 @@ with tabs[2]:
 
         if st.button('Submit Prompt'):
             with st.spinner('Generating output...'):
+                # with  st_lottie(pdfload)
                 if user_prompt: 
                 
                     if "vector_store" in st.session_state:
