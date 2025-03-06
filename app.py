@@ -68,7 +68,6 @@ st.title("Spark AI")
 
 tab_titles = [
     "Home",
-    "   Vision Instruct  ",
     "File Query",
     "About",
 ]
