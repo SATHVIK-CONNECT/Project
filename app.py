@@ -19,7 +19,7 @@ import tempfile
 # import hydralit as hy
 
 # Layout
-# st.set_page_config(layout="wide")
+st.set_page_config(page_title="Spark AI", page_icon="⚡")
 
 # app = hy.HydraApp(title="APP")
 # def home():
