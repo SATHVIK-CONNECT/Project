@@ -1,4 +1,3 @@
-import streamlit as st
 from groq import Groq
 import base64
 import os
@@ -16,7 +15,6 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 from streamlit_lottie import  st_lottie
 import tempfile
-# import hydralit as hy
 
 # Layout
 st.set_page_config(page_title="Spark AI", page_icon="⚡")
@@ -66,7 +64,6 @@ def generate(uploaded_image, prompt):
 # with col3:
     # st.image(image="spark-logo.png", width=40)
 # with col4:
-st.topbar()
 st.title("Spark AI")
 
 tab_titles = [
@@ -99,16 +96,20 @@ with tabs[0]:
                 , unsafe_allow_html=True)
     st.markdown("""<hr>
                 <h4>Slides</h4>
-                <marquee><img src="" style="height:250px; width:400px; border-radius:25px; background: grey;"></marquee>
+                <marquee>
                """, unsafe_allow_html=True)
+    st.image(image="slide1.webp")
+    st.markdown("""</marquee>""", unsafe_allow_html=True)
 
 
 
-    st.markdown("""        <h4 style="background: #1da5f2; padding: 10px 20px; dislay: inline-block; border-radius: 25px;">Advantages of the Intellect</h4>
+    st.markdown("""        <h4>Advantages of the Intellect</h4>
         <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
-        <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>""", unsafe_allow_html=True)
+        <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
+                """, unsafe_allow_html=True)
+
     st.markdown("""
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
@@ -228,18 +229,27 @@ with tabs[3]:
     st.markdown("""
         <h4>About Intellect</h4>
         <p style="text-indent: 60px; text-align: justify;"> Spark is an AI-powereed application developed as part of the Applied Artificial Intelligence: Practical Implementations course  by TechSaksham Program, which is a CSR initiative by Micrososft and SAP, implemented by Edunet Foundation</p>
-        <br>
-        <ul> 
-            <p>Here are the details of the Project development group</p>
+        <hr>""", unsafe_allow_html=True)
+    col5, col6 = st.columns(2, gap="large", vertical_alignment="center")
+    with col5:
+        st.markdown("""        <ul> 
+            <h3>Project Development Group Details</h3>
             <h4>Team Members</h4>
-            <li>Sathvik</li>
-            <li>Ravi Kiran</li>          
+            <li>Sathvik Palivela</li>
+            <li>Ravi Kiran Rayudu</li>          
         </ul>
         <ul>
             <h4>Mentor</h4>
             <li>Abdul Aziz Md</li>
         </ul>
-        <br>
+        <br>""", unsafe_allow_html=True)
+    with col6:
+        def coding(coding = "coding.json"):
+            with open(coding, 'r', encoding='UTF-8') as f:
+                return json.load(f)
+        icon = coding()
+        st_lottie(icon, width=350, height=350)
+    st.markdown("""<hr>
         <h4>Acknowledgements</h4>
         <p>We would like to extend our gratitude to: </p>
         <ul><li>TechSaksham Program, a CSR initiative by Microsoft and SAP</li>
@@ -250,4 +260,4 @@ with tabs[3]:
         <p>For any queries or feedback, please reach out to us at <a>sathvikpalivela0@gmail.com</a>. 
 
     """, unsafe_allow_html=True)
-
+    st.feedback(options='stars')
