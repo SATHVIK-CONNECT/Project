@@ -73,7 +73,7 @@ tab_titles = [
     "About",
 ]
 
-whitespace = 16
+whitespace = 16.5
 ## Fills and centers each tab label with em-spaces
 tabs = st.tabs([s.center(whitespace,"\u2001") for s in tab_titles])
 
