@@ -117,24 +117,24 @@ with tabs[0]:
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
     """, unsafe_allow_html=True)
 
-with tabs[1]:
-    st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
-    #upload file
-    uploaded_file = st.file_uploader('Upload an image', type=['jpg', 'jpeg', 'png'])
+# with tabs[1]:
+#     st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
+#     #upload file
+#     uploaded_file = st.file_uploader('Upload an image', type=['jpg', 'jpeg', 'png'])
 
-    if uploaded_file is not None:
-            # Show the uploaded image
-            st.image(uploaded_file, caption='Uploaded Image')
-            prompt = st.text_input('Enter Query')
+#     if uploaded_file is not None:
+#             # Show the uploaded image
+#             st.image(uploaded_file, caption='Uploaded Image')
+#             prompt = st.text_input('Enter Query')
 
-            if st.button('Generate'):
-                with st.spinner('Generating output...'):
-                    if prompt:
-                        output = generate(uploaded_file, prompt)
-                    else:
-                        output = generate(uploaded_file, 'What is in this picture?')
-                st.subheader('Output:')
-                st.write(output)
+#             if st.button('Generate'):
+#                 with st.spinner('Generating output...'):
+#                     if prompt:
+#                         output = generate(uploaded_file, prompt)
+#                     else:
+#                         output = generate(uploaded_file, 'What is in this picture?')
+#                 st.subheader('Output:')
+#                 st.write(output)
 
 with tabs[2]:        
     #upload file
