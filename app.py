@@ -16,9 +16,17 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 from streamlit_lottie import  st_lottie
 import tempfile
+# import hydralit as hy
 
 # Layout
 # st.set_page_config(layout="wide")
+
+# app = hy.HydraApp(title="APP")
+# def home():
+#     hy.info("f")
+# def app2():
+#     hy.info("DF")
+# app.run()
 
 # Set up Groq API Key
 os.environ['GROQ_API_KEY'] = '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'
@@ -54,6 +62,11 @@ def generate(uploaded_image, prompt):
     return chat_completion.choices[0].message.content
 
 # Streamlit App
+# col3, col4 = st.columns(4, gap="small", vertical_alignment="center")
+# with col3:
+    # st.image(image="spark-logo.png", width=40)
+# with col4:
+st.topbar()
 st.title("Spark AI")
 
 tab_titles = [
@@ -85,11 +98,13 @@ with tabs[0]:
 """
                 , unsafe_allow_html=True)
     st.markdown("""<hr>
-                <marquee><img src="IMAGE.jpg" width="200px" height="100px" style="border-radius:30px"></marquee>""", unsafe_allow_html=True)
+                <h4>Slides</h4>
+                <marquee><img src="" style="height:250px; width:400px; border-radius:25px; background: grey;"></marquee>
+               """, unsafe_allow_html=True)
 
 
 
-    st.markdown("""        <h4>Advantages of the Intellect</h4>
+    st.markdown("""        <h4 style="background: #1da5f2; padding: 10px 20px; dislay: inline-block; border-radius: 25px;">Advantages of the Intellect</h4>
         <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
@@ -100,6 +115,7 @@ with tabs[0]:
     """, unsafe_allow_html=True)
 
 with tabs[1]:
+    st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
     #upload file
     uploaded_file = st.file_uploader('Upload an image', type=['jpg', 'jpeg', 'png'])
 
