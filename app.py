@@ -76,7 +76,7 @@ tab_titles = [
 tabs = st.tabs(tab_titles)
 whitespace = 9
 ## Fills and centers each tab label with em-spaces
-tabs = st.tabs([s.center(whitespace,"\u2001") for s in listTabs])
+tabs = st.tabs([s.center(whitespace,"\u2001") for s in tab_titles])
 
 with tabs[0]:
     def lottie(anime="anime.json"):
