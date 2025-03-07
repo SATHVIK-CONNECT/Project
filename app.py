@@ -66,6 +66,7 @@ def generate(uploaded_image, prompt):
 # with col4:
 st.title("Spark AI")
 
+                                                                                                                                                                                                            
 tab_titles = [
     "Home",
     "Vision Instruct",
@@ -73,9 +74,14 @@ tab_titles = [
     "About",
 ]
 
-# whitespace = 12
-# ## Fills and centers each tab label with em-spaces
-# tabs = st.tabs([s.center(whitespace,"\u2001") for s in tab_titles])
+vision = [
+    "The vision instruct system utilizes visual instructional RAG to generate interactive and immersive visual instructions. By incorporating computer vision-based instructional RAG, the system can analyze images and generate corresponding instructions. With the integration of multimodal RAG for visual instruction, users can interact with the system using multiple modes of input, enhancing their understanding and retention of complex concepts.\n\nHow to use Vision Instruct\n\n1. Go to Vision Instruct tab.\n\n2. Click on upload option and upload the image.\n\n3. Give the prompt (Question).\n\n4. Click on Generate option."
+    ]     
+file = [
+    "The file query system utilizes document-centric querying with RAG to retrieve relevant information from PDF documents. By incorporating PDF-based knowledge retrieval with RAG, the system can analyze the content of PDF files and generate answers to user queries. With the integration of file-based question answering with RAG, users can ask questions about the content of files and receive accurate and relevant responses.\n\nHow to use File Query\n\n1. Go to File Query tab.\n\n2. Click on upload option and upload the PDF File.\n\n3. Give the prompt (Question).\n\n4. Click on Generate option."
+    ]     
+
+
 tabs = st.tabs(tab_titles)
 with tabs[0]:
     def lottie(anime="anime.json"):
@@ -87,45 +93,58 @@ with tabs[0]:
 
     col1, col2 = st.columns(2, gap="large", vertical_alignment="center")
     with col2:
-          st_lottie(animes, width=300, height=300,)
+          st_lottie(animes, width=300, height=300)
     with col1:
         
      st.markdown("""
-        <h4>Welcome to Intellect!</h4>
+        <h4>Welcome to Spark AI!</h4>
         <p style="text-align: justify;">Unlock the power of AI-driven image and file analysis with our innovative application. Sparkis designed to simplify complex tasks, providing accurate and efficient results.</p>
 
 """
                 , unsafe_allow_html=True)
     st.markdown("""<hr>
-                <h4>Slides</h4>
-                <marquee>
+            
                """, unsafe_allow_html=True)
+   
     st.image(image="slide1.webp")
-    st.markdown("""</marquee>""", unsafe_allow_html=True)
-
-
-
-    st.markdown("""        <h4>Advantages of the Intellect</h4>
-        <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>
+    st.markdown("""<h4>Retrieval Augumented Generation</h4>
+                <p style="text-align: justify;">The Retrieval-Augmented Generation (RAG) framework leverages hybrid retrieval-generation techniques to produce more accurate and informative responses. By combining the strengths of retrieval and generation models, RAG enables knowledge-augmented language generation, where relevant facts and information are seamlessly integrated into the generated text. This approach facilitates generative retrieval, 
+                allowing the model to retrieve and generate text in a single, unified framework. Ultimately, RAG has the potential to revolutionize natural language processing and language generation, enabling the development of more sophisticated and knowledgeable AI systems.</p><hr>""", unsafe_allow_html=True)
+                
+    st.markdown("""        <h4>Advantages of the Spark AI</h4>
+        <p style="text-align: justify;">It simplifies daily life tasks by using AI, generates the anlyzed data with in a minute. It saves the time by reading all data in files using AI-driven model.</p>""", unsafe_allow_html=True)
+    st.image(image="advantage.png")
+    st.markdown("""<hr>
         <h4>Explore Our Features - Get Started</h4>
         <h5>Vision Instruct</h5>
         <p style="text-align: justify;">It is used to query with images. It let us analyze the image data by using the llama model.</p>
+                
                 """, unsafe_allow_html=True)
+    with st.expander("V I S I O N - I N S T R U C T"):
+        st.write(vision[0])
 
     st.markdown("""
         <h5>File Query</h5>
         <p style="text-align: justify;">It is used to query with files. It let us analyze the files like PDF, TXT and so on by using the llama model.</p>
     """, unsafe_allow_html=True)
+    with st.expander("F I L E - Q U E R Y"):
+        st.write(file[0])
 
 with tabs[1]:
-    st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
+    # st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
     #upload file
+    def img_analyze(img_analyze="img_analyze.json"):
+        with open(img_analyze, "r", encoding='UTF-8') as f:
+            return json.load(f)
+    img_analyze = img_analyze()
+    st_lottie(img_analyze)
+
     uploaded_file = st.file_uploader('Upload an image', type=['jpg', 'jpeg', 'png'])
 
     if uploaded_file is not None:
             # Show the uploaded image
             st.image(uploaded_file, caption='Uploaded Image')
-            prompt = st.text_input('Enter Query')
+            prompt = st.text_input('Enter the prompt')
 
             if st.button('Generate'):
                 with st.spinner('Generating output...'):
@@ -133,7 +152,7 @@ with tabs[1]:
                         output = generate(uploaded_file, prompt)
                     else:
                         output = generate(uploaded_file, 'What is in this picture?')
-                st.subheader('Output:')
+                st.subheader('Result:')
                 st.write(output)
 
 with tabs[2]:        
@@ -142,7 +161,12 @@ with tabs[2]:
         with open(pdfload, 'r', encoding="UTF-8") as f:
             return json.load(f)
     pdfload = pdfload()
-    
+    def pdf_analyze(pdf_analyze="pdf_analyze.json"):
+        with open(pdf_analyze, "r", encoding='UTF-8') as f:
+            return json.load(f)
+    pdf_analyze = pdf_analyze()
+    st_lottie(pdf_analyze)   
+
 
     groq_api_key = os.getenv('GROQ_API_KEY')
 
@@ -211,7 +235,7 @@ with tabs[2]:
 
         user_prompt = st.text_input("Enter Your Question related to the uploaded PDF")
 
-        if st.button('Submit Prompt'):
+        if st.button('Generate'):
             with st.spinner('Generating output...'):
                 # with  st_lottie(pdfload)
                 if user_prompt: 
@@ -239,8 +263,8 @@ with tabs[2]:
 with tabs[3]:
     #upload file
     st.markdown("""
-        <h4>About Intellect</h4>
-        <p style="text-indent: 60px; text-align: justify;"> Spark is an AI-powereed application developed as part of the Applied Artificial Intelligence: Practical Implementations course  by TechSaksham Program, which is a CSR initiative by Micrososft and SAP, implemented by Edunet Foundation</p>
+        <h4>About Spark AI</h4>
+        <p style="text-indent: 60px; text-align: justify;"> Spark is an AI-powered application developed as part of the Applied Artificial Intelligence: Practical Implementations course  by TechSaksham Program, which is a CSR initiative by Microsoft and SAP, implemented by Edunet Foundation</p>
         <hr>""", unsafe_allow_html=True)
     col5, col6 = st.columns(2, gap="large", vertical_alignment="center")
     with col5:
@@ -268,8 +292,9 @@ with tabs[3]:
             <li>Edunet Foundation for implementing the AI Practical Implementations course</li>
             <li>Aziz Sir for excellent guidance and mentorship</li></ul>
         <br>
+        <h4>GitHub Repository</h4>
+        <p>Check our github repository - <a href='https://github.com/SATHVIK-CONNECT/Project/tree/main'>Git Repo of Spark AI</a></p>
+        <br> 
         <h4>Contact Us</h4>
-        <p>For any queries or feedback, please reach out to us at <a>sathvikpalivela0@gmail.com</a>. 
-
+        <p>For any queries or feedback, please reach out to us at <a>sathvikpalivela0@gmail.com</a>.
     """, unsafe_allow_html=True)
-    st.feedback(options='stars')
