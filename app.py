@@ -213,8 +213,7 @@ with tabs[2]:
 
         user_prompt = st.text_input("Enter Your Question related to the uploaded PDF")
 
-        if st.button('Generate'):
-            with st.spinner('Generating output...'):
+        if st.button('Generate Analysis'):
                 if user_prompt: 
                     if "vector_store" in st.session_state:
 
