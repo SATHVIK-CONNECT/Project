@@ -19,13 +19,6 @@ import tempfile
 # Layout
 st.set_page_config(page_title="Spark AI", page_icon="⚡")
 
-# app = hy.HydraApp(title="APP")
-# def home():
-#     hy.info("f")
-# def app2():
-#     hy.info("DF")
-# app.run()
-
 # Set up Groq API Key
 os.environ['GROQ_API_KEY'] = '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'
 
@@ -59,14 +52,8 @@ def generate(uploaded_image, prompt):
     )
     return chat_completion.choices[0].message.content
 
-# Streamlit App
-# col3, col4 = st.columns(4, gap="small", vertical_alignment="center")
-# with col3:
-    # st.image(image="spark-logo.png", width=40)
-# with col4:
 st.title("Spark AI")
 
-                                                                                                                                                                                                            
 tab_titles = [
     "Home",
     "Vision Instruct",
@@ -131,7 +118,6 @@ with tabs[0]:
         st.write(file[0])
 
 with tabs[1]:
-    # st.markdown("""<h1 style="height: 300px"><h1>""", unsafe_allow_html=True)
     #upload file
     def img_analyze(img_analyze="img_analyze.json"):
         with open(img_analyze, "r", encoding='UTF-8') as f:
@@ -156,11 +142,6 @@ with tabs[1]:
                 st.write(output)
 
 with tabs[2]:        
-    #upload file
-    def pdfload(pdfload = "pdfload.json"):
-        with open(pdfload, 'r', encoding="UTF-8") as f:
-            return json.load(f)
-    pdfload = pdfload()
     def pdf_analyze(pdf_analyze="pdf_analyze.json"):
         with open(pdf_analyze, "r", encoding='UTF-8') as f:
             return json.load(f)
@@ -195,9 +176,6 @@ with tabs[2]:
                 temp_file.write(pdf_file.read())
 
                 pdf_file_path = temp_file.name
-
-                st_lottie(pdfload, width=150, height=150, loop=2)
-
 
             st.session_state.embeddings = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5', model_kwargs={'device': 'cpu'}, encode_kwargs={'normalize_embeddings': True})
             
@@ -237,9 +215,7 @@ with tabs[2]:
 
         if st.button('Generate'):
             with st.spinner('Generating output...'):
-                # with  st_lottie(pdfload)
                 if user_prompt: 
-                
                     if "vector_store" in st.session_state:
 
                         document_chain = create_stuff_documents_chain(llm, prompt)
