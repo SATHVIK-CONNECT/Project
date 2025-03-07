@@ -52,7 +52,7 @@ def generate(uploaded_image, prompt):
     )
     return chat_completion.choices[0].message.content
 
-st.title("Spark AI")
+st.title("⚡Spark AI")
 
 tab_titles = [
     "Home",
@@ -67,7 +67,6 @@ vision = [
 file = [
     "The file query system utilizes document-centric querying with RAG to retrieve relevant information from PDF documents. By incorporating PDF-based knowledge retrieval with RAG, the system can analyze the content of PDF files and generate answers to user queries. With the integration of file-based question answering with RAG, users can ask questions about the content of files and receive accurate and relevant responses.\n\nHow to use File Query\n\n1. Go to File Query tab.\n\n2. Click on upload option and upload the PDF File.\n\n3. Give the prompt (Question).\n\n4. Click on Generate option."
     ]     
-
 
 tabs = st.tabs(tab_titles)
 with tabs[0]:
@@ -194,14 +193,11 @@ with tabs[2]:
 
 
     if pdf_input_from_user is not None:
-
-        if st.button("Create the Vector DB from the uploaded PDF file"):
-            
+        with st.spinner('Generating output...'):
+    
             if pdf_input_from_user is not None:
 
                 create_vector_db_out_of_the_uploaded_pdf_file(pdf_input_from_user)
-
-                st.success("Vector Store DB for this PDF file Is Ready")
             
             else:
                 
