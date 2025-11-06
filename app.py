@@ -32,7 +32,7 @@ def generate(uploaded_image, prompt):
                 ],
             }
         ],
-        model='llama-3.2-90b-vision-preview',
+        model='meta-llama/llama-4-scout-17b-16e-instruct',
     )
     return chat_completion.choices[0].message.content
 
@@ -54,7 +54,7 @@ def generate_file(uploaded_file, prompt):
                 ],
             }
         ],
-        model='llama-3.2-90b-vision-preview',
+        model='meta-llama/llama-4-scout-17b-16e-instruct',
     )
     return chat_completion.choices[0].message.content
 
