@@ -57,7 +57,6 @@ st.title("⚡Spark AI")
 tab_titles = [
     "Home",
     "Vision Instruct",
-    "File Query",
     "About",
 ]
 
@@ -140,7 +139,7 @@ with tabs[1]:
                 st.subheader('Result:')
                 st.write(output)
 
-with tabs[2]:        
+""" with tabs[2]:        
     def pdf_analyze(pdf_analyze="pdf_analyze.json"):
         with open(pdf_analyze, "r", encoding='UTF-8') as f:
             return json.load(f)
@@ -154,14 +153,14 @@ with tabs[2]:
 
 
     prompt = ChatPromptTemplate.from_template(
-        """
+    
         Answer the questions based on the provided context only.
         Please provide the most accurate response based on the question.
         <context>
         {context}
         <context>
         Questions: {input}
-        """
+        
     )
 
     def create_vector_db_out_of_the_uploaded_pdf_file(pdf_file):
@@ -230,8 +229,8 @@ with tabs[2]:
                 else:
 
                     st.error('Please write your prompt')
-
-with tabs[3]:
+"""
+with tabs[2]:
     #upload file
     st.markdown("""
         <h4>About Spark AI</h4>
