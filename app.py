@@ -20,7 +20,7 @@ import tempfile
 st.set_page_config(page_title="Spark AI", page_icon="⚡")
 
 # Set up Groq API Key
-os.environ['GROQ_API_KEY'] = ${{ secrets.API_KEY }}
+os.environ['GROQ_API_KEY'] = 'meta-llama/llama-4-scout-17b-16e-instruct'
 
 # Styling
 canvas = st.markdown("""
