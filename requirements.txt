@@ -9,3 +9,4 @@ langchain_community
 pypdf
 streamlit-lottie
 faiss-cpu
+sentence_transformers
